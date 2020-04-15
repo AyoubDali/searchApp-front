@@ -3,16 +3,32 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ListingResultComponent } from './listing-result/listing-result.component';
+import { SearchDetailsComponent } from './search-details/search-details.component';
+import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './header/header.component';
+import { FooterComponent } from './footer/footer.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DataService } from './service/data.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListingResultComponent,
+    SearchDetailsComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
+      ],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

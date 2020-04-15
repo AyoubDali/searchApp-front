@@ -1,0 +1,202 @@
+      <div class="bradcam_area bradcam_bg_3">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="bradcam_text text-center">
+                            <div class="icon">
+                                <i class="flaticon-food"></i>
+                            </div>
+                            <h4 >{{subscriber.name}}</h4>
+                            <div *ngIf="subscriber?.addressSet">
+                                <p>{{subscriber.addressSet[0].city+' '+subscriber.addressSet[0].street}}</p>
+                                
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<div class="listing_details">
+    <div class="container">
+        <div class="row justify-content-center">
+
+            <div class="col-lg-8">
+                <div class="single_details">
+
+                    <div *ngIf="subscriber?.professionType">
+                        <h3>Profession type </h3>
+                        <h2 style="padding-left: 3%;" > {{subscriber.professionType.type}} </h2>
+                    </div>   
+                    <div *ngIf="subscriber?.legalInformation.description"> 
+                        <h3>Description </h3>
+                        <p style="padding-left: 3%;" > {{subscriber.legalInformation.description}} </p>
+                    </div> 
+
+                    <div *ngIf="subscriber?.openingTimeSet">
+                        <h3>Horaire </h3>
+                        <ul class="unordered-list">
+                            <li *ngFor='let openingTime of subscriber.openingTimeSet'>
+                                    {{openingTime.day+': '+openingTime.opening+"  --  "+openingTime.closing}}
+                            </li>
+                        </ul>
+                    </div>
+
+
+
+                   </div>
+                <div class="single_details">
+                    <h3>Location</h3>
+                    <div class="map_Wrap">
+                        <div class="d-sm-block ">
+                            <div class="map_inner_info">
+                                <div id="map" style="height: 350px;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="single_details">
+                    <h3 style="display:inline" >{{subscriber.professionType.category+' '}}</h3>
+                    <h3 style="display:inline; ">information</h3><br>
+                    
+                    <div  *ngIf="subscriber?.phoneNumber" style="padding-left:4%; padding-top: 4%;" >
+                        <p style="display: inline; font-weight: bold;">Phone number </p>
+                        <p style="display: inline;" > {{subscriber.phoneNumber}}</p>
+                    </div>
+                    <div *ngIf="subscriber?.phoneNumber2" style="padding-left:4%;" >
+                        <p style="display: inline; font-weight: bold;">Phone number 2 </p>
+                        <p style="display: inline;" > {{subscriber.phoneNumber2}}</p>
+                    </div>
+                    <div *ngIf="subscriber?.email" style="padding-left:4%;" >
+                        <p style="display: inline; font-weight: bold;">Email </p>
+                        <p style="display: inline;" > {{subscriber.email}}</p>
+                    </div>
+                    <div  *ngIf="subscriber?.websiteUrl" style="padding-left:4%;" >
+                        <p style="display: inline; font-weight: bold;">Website Url </p>
+                        <p style="display: inline;" > {{subscriber.websiteUrl}}</p>
+                    </div>
+                    <div *ngIf="subscriber?.addressSet" style="padding-left:4%;" >
+                        <p style="display: inline; font-weight: bold;">Address </p>
+                        <p style="display: inline;" >{{subscriber.addressSet[0].city+' '+subscriber.addressSet[0].street}}</p>
+                    </div>
+
+                    <h3 style="padding-top: 3%;">Legal Information </h3>
+                        <div *ngIf="subscriber?.phoneNumber" style="padding-left:4%;" th:if="${subscriber.getLegalInformation().getCompanyName()!=null}">
+                            <p style="display: inline; font-weight: bold;">Company name: </p>
+                            <p style="display: inline;" > {{subscriber.legalInformation.companyName}}</p>
+                        </div>
+                         <div *ngIf="subscriber?.phoneNumber" style="padding-left:4%;" >
+                            <p style="display: inline; font-weight: bold;">NIC: </p>
+                            <p style="display: inline;" > {{subscriber.legalInformation.nic}}</p>
+                        </div>
+                        <div *ngIf="subscriber?.phoneNumber" style="padding-left:4%;">
+                            <p style="display: inline; font-weight: bold;">SIREN: </p>
+                            <p style="display: inline;" > {{subscriber.legalInformation.siren}}</p>
+                        </div>
+                         <div *ngIf="subscriber?.phoneNumber" style="padding-left:4%;">
+                            <p style="display: inline; font-weight: bold;">SIRET: </p>
+                            <p style="display: inline;" > {{subscriber.legalInformation.siret}}</p>
+                        </div>
+                         <div *ngIf="subscriber?.phoneNumber" style="padding-left:4%;">
+                            <p style="display: inline; font-weight: bold;">Company principal activity (APE): </p>
+                            <p style="display: inline;" > {{subscriber.legalInformation.ape}}</p>
+                        </div>
+                         <div *ngIf="subscriber?.phoneNumber" style="padding-left:4%;" >
+                            <p style="display: inline; font-weight: bold;">Tva: </p>
+                            <p style="display: inline;" > {{subscriber.legalInformation.tva}}</p>
+                        </div>
+                </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+</div>   
+</div>   
+
+<div class="explorer_europe">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="section_title text-center mb-50">
+                    <h3>Related Listings</h3>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single_explorer">
+                            <div class="thumb">
+                                <img src="img/explorer/1.png" alt="">
+                            </div>
+                            <div class="explorer_bottom d-flex">
+                                <div class="icon">
+                                    <i class="flaticon-beach"></i>
+                                </div>
+                                <div class="explorer_info">
+                                    <h3><a href="#">Saintmartine</a></h3>
+                                    <p>700/D, Kings road, Green lane, London</p>
+                                    <ul>
+                                        <li> <i class="fa fa-phone"></i>
+                                            +10 278 367 9823</li>
+                                        <li><i class="fa fa-envelope"></i> contact@midnight.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single_explorer">
+                            <div class="thumb">
+                                <img src="img/explorer/2.png" alt="">
+                            </div>
+                            <div class="explorer_bottom d-flex">
+                                <div class="icon">
+                                    <i class="flaticon-food"></i>
+                                </div>
+                                <div class="explorer_info">
+                                    <h3><a href="#">Freshly Food</a></h3>
+                                    <p>700/D, Kings road, Green lane, London</p>
+                                    <ul>
+                                        <li> <i class="fa fa-phone"></i>
+                                            +10 278 367 9823</li>
+                                        <li><i class="fa fa-envelope"></i> contact@midnight.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single_explorer">
+                            <div class="thumb">
+                                <img src="img/explorer/3.png" alt="">
+                            </div>
+                            <div class="explorer_bottom d-flex">
+                                <div class="icon">
+                                    <i class="flaticon-food-1"></i>
+                                </div>
+                                <div class="explorer_info">
+                                    <h3><a href="#">Midnight</a></h3>
+                                    <p>700/D, Kings road, Green lane, London</p>
+                                    <ul>
+                                        <li> <i class="fa fa-phone"></i>
+                                            +10 278 367 9823</li>
+                                        <li><i class="fa fa-envelope"></i> contact@midnight.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+    </div>
+</div>
