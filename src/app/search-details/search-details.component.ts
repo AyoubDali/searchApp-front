@@ -15,6 +15,9 @@ import { DataService } from '../service/data.service';
   subscriberId: any;
   subscriber: Subscriber;
   SubscribersList: Subscriber[];
+  latitude: any = 52.295407 ;
+  longitude: any = 4.681376;
+  mapType = 'roadmap';
 
 
 
@@ -28,18 +31,17 @@ import { DataService } from '../service/data.service';
     });
 
      this.subscriber = this.getSubscriberByEsId(this.subscriberId)
-     console.log("data: "+  JSON.stringify(this.subscriber));
-
+     console.log("data: "+  this.subscriber.addressSet[0].longitude);
+    
+     this.latitude= parseFloat(this.subscriber.addressSet[0].latitude);
+     this.longitude= parseFloat(this.subscriber.addressSet[0].longitude);
 
   }
   
 
- 
-
    getSubscriberByEsId(es_id: string){
      this.SubscribersList =  JSON.parse(localStorage.getItem("subscribersList"))
-
-   return this.SubscribersList.find(x => x.es_id === this.subscriberId); 
+     return this.SubscribersList.find(x => x.es_id === this.subscriberId); 
    }
 
 }

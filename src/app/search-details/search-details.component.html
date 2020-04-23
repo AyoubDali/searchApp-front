@@ -51,7 +51,11 @@
                     <div class="map_Wrap">
                         <div class="d-sm-block ">
                             <div class="map_inner_info">
-                                <div id="map" style="height: 350px;"></div>
+                               <!-- <div id="map" style="height: 350px;"></div>-->
+                               <agm-map [latitude]='latitude' [longitude]='longitude' [mapTypeId]='mapType'>
+                                    <agm-marker class="mapMarker" [latitude]="latitude" [longitude]="longitude" >
+                                    </agm-marker>
+                               </agm-map>
                             </div>
                         </div>
                     </div>

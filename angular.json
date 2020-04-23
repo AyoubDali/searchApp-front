@@ -83,8 +83,8 @@
               "src/assets/js/jquery.ajaxchimp.min.js",
               "src/assets/js/jquery.form.js",
               "src/assets/js/jquery.validate.min.js",
-              "src/assets/js/mail-script.js",
-              "src/assets/js/main.js"
+              "src/assets/js/main.js",
+              "src/assets/js/mail-script.js"
     
             ]
           },

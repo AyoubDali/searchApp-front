@@ -1,0 +1,54 @@
+<div class="slider_area">
+  <div class="single_slider single_listing  d-flex align-items-center slider_bg_1">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-xl-10">
+          <div class="slider_text text-center justify-content-center">
+            <h3>Sign-up</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="listing_details">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-4">
+        <div class="single_details">
+          <div class="my-4 uk-text-center">
+            <h2 class="mb-0">Create new a Account</h2>
+          </div>
+          <form #myform = "ngForm" (ngSubmit) = "signUp(myform)"  >
+
+            <div>
+              <div class="form-group">
+                  <Label>Full name</Label>
+                  <input class="single-input" type="text" placeholder="Full name" [formControl]="fullName">
+              </div>
+              <div class="form-group">
+                <Label>E-mail</Label>
+                <input class="single-input" type="text" placeholder="E-mail" [formControl]="email">
+              </div>
+              <div class="form-group">
+                <Label>Password</Label>
+                <input class="single-input" type="password" placeholder="Password" [formControl]="password">
+              </div>
+              <div class="form-group">
+                <Label>Confirm your password</Label>
+                <input class="single-input" type="password" placeholder="Confirm your password">
+              </div>
+             <!-- <Label style="padding-bottom: 3%;">Profile type</Label>-->
+            
+             
+              <div class="form-group" style="text-align:center; ">
+                <button class="genric-btn success circle arrow .btn-lg"  style="  font-size: 16px;" type="submit">Submit</button>
+              </div>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

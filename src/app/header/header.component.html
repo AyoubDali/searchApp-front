@@ -1,5 +1,11 @@
-<header>
-    <div class="header-area ">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body>
+
+    <div class="header-area"  th:fragment="header">
         <div id="sticky-header" class="main-header-area">
             <div class="container-fluid ">
                 <div class="header_bottom_border">
@@ -15,33 +21,33 @@
                             <div class="main-menu  d-none d-lg-block">
                                 <nav>
                                     <ul id="navigation">
-                                        <li><a href="index.html">home</a></li>
-                                        <li><a href="Listings.html">Listings</a></li>
-                                        <li><a href="#">pages <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                
-                                                <li><a href="elements.html">elements</a></li>
-                                                <li><a href="single_listings.html">Single listing</a></li>
-                                            </ul>
-                                        </li>
+                                        <li><a [routerLink]="['/']">home</a></li>
+                                        <li *ngIf="role == 'ROLE_PROFESSIONAL'"><a [routerLink]="['businessManagment']">highlight your business</a></li>
+                                        <li *ngIf="role == 'ROLE_USER'"><a [routerLink]="['businessManagment']">edit your informations</a></li>
                                         <li><a href="about.html">about</a></li>
-                                        <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                            <ul class="submenu">
-                                                <li><a href="blog.html">blog</a></li>
-                                                <li><a href="single-blog.html">single-blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html">Contact</a></li>
+                                        <li><a [routerLink]="['/sign-up']">sign-up</a></li>
+
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                            <div class="Appointment">
-                                <div class="book_btn d-none d-lg-block">
-                                    <a href="#">Sign In</a>
+                            <ng-container *ngIf="loggedOut === true; then first else second"></ng-container>
+                            <ng-template #first>
+                                <div class="Appointment" >
+                                    <div class="book_btn d-none d-lg-block">
+                                        <a [routerLink]="['/sign-in']">Sign In</a>
+                                    </div>
                                 </div>
-                            </div>
+                            </ng-template>
+
+                            <ng-template #second>
+                                <div class="Appointment" >
+                                    <div class="book_btn d-none d-lg-block">
+                                        <a (click)="signOut()">Sign Out</a>
+                                    </div>
+                                </div>
+                            </ng-template>
                         </div>
                         <div class="col-12">
                             <div class="mobile_menu d-block d-lg-none"></div>
@@ -52,4 +58,6 @@
             </div>
         </div>
     </div>
-</header>
+
+</body>
+</html>

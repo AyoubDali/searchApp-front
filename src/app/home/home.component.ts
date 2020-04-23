@@ -21,8 +21,7 @@ export class HomeComponent implements OnInit {
   }
 
   search(){
-   
-      this.router.navigate([`/search`,this.searchKey.value]);
+    this.router.navigate([`/search`, this.searchKey.value]);
   }
 
 

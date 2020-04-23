@@ -11,6 +11,16 @@ import { FooterComponent } from './footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DataService } from './service/data.service';
+import { AgmCoreModule } from '@agm/core';
+import { SignUpComponent } from './sign-up/sign-up.component';
+import { SignInComponent } from './sign-in/sign-in.component';
+import { BusinessManagmentComponent } from './business-managment/business-managment.component';
+
+import {MatStepperModule, MatInputModule, MatButtonModule} from '@angular/material'
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { authInterceptorProviders } from './service/AuthInterceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -19,16 +29,26 @@ import { DataService } from './service/data.service';
     SearchDetailsComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SignUpComponent,
+    SignInComponent,
+    BusinessManagmentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatStepperModule, MatInputModule, MatButtonModule,
+
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA0C5etf1GVmL_ldVAichWwFFVcDfa1y_c'
+    })
+
       ],
-  providers: [DataService],
+  providers: [DataService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
