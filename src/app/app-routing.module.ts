@@ -6,6 +6,7 @@ import { SearchDetailsComponent } from './search-details/search-details.componen
 import {SignUpComponent} from './sign-up/sign-up.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { BusinessManagmentComponent } from './business-managment/business-managment.component';
+import { EditSubscriberComponent } from './edit-subscriber/edit-subscriber.component';
 
 
 const routes: Routes = [
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path : 'subscriber/:es_id', component: SearchDetailsComponent},
   {path : 'sign-up', component: SignUpComponent},
   {path : 'sign-in', component: SignInComponent},
-  {path : 'businessManagment', component: BusinessManagmentComponent}
+  {path : 'businessManagment', component: BusinessManagmentComponent},
+  {path : 'editSubscriber', component: EditSubscriberComponent}
 
 ];
 

@@ -1,36 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { TokenStorageService } from '../service/token-storage.service';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
-import { Address } from 'src/interfaces/address';
-import { LegalInformation } from 'src/interfaces/legal-information';
-import { Operator } from 'src/interfaces/operator';
-import { ProfessionType } from 'src/interfaces/profession-type';
-import { OpeningTime } from 'src/interfaces/opening-time';
-import { DataService } from '../service/data.service';
+import { ActivatedRoute } from '@angular/router';
 import { Subscriber } from '../model/Subscriber';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AddressModel } from '../model/AddressModel';
-import { OpeningTimeModel } from '../model/OpeningTimeModel';
 import { ProfessionTypeModel } from '../model/ProfessionTypeModel';
-import { LegalInformationModel } from '../model/LegalInformationModel';
+import { OpeningTimeModel } from '../model/OpeningTimeModel';
 import { OperatorModel } from '../model/OperatorModel';
+import { LegalInformationModel } from '../model/LegalInformationModel';
+import { ProfessionType } from 'src/interfaces/profession-type';
+import { Operator } from 'src/interfaces/operator';
+import { DataService } from '../service/data.service';
 
 @Component({
-  selector: 'app-business-managment',
-  templateUrl: './business-managment.component.html',
-  styleUrls: ['./business-managment.component.css']
+  selector: 'app-edit-subscriber',
+  templateUrl: './edit-subscriber.component.html',
+  styleUrls: ['./edit-subscriber.component.css']
 })
-export class BusinessManagmentComponent implements OnInit {
-
-  /*title = 'materialApp';
-   firstFormGroup: FormGroup;
-   secondFormGroup: FormGroup;*/
-
+export class EditSubscriberComponent implements OnInit {
+  sub: any;
+  subscriberInfo: Subscriber;
+  subscriber: Subscriber;
 
 
-
-
-  // General information //
    name = new FormControl('', [Validators.required]);
    password = new FormControl('', [Validators.required]);
    phoneNumber = new FormControl('', [Validators.required]);
@@ -72,7 +63,6 @@ export class BusinessManagmentComponent implements OnInit {
   // openingTimeList: OpeningTimeModel[];
    openingTimeList:OpeningTimeModel[];
 
-   subscriber: Subscriber;
    address: AddressModel;
    professionType: ProfessionTypeModel;
    openingTime: OpeningTimeModel;
@@ -80,35 +70,49 @@ export class BusinessManagmentComponent implements OnInit {
    legalInformation: LegalInformationModel;
 
 
-  constructor( private tokenStorageService:TokenStorageService, private router: Router,
-    private _formBuilder: FormBuilder, private dataService: DataService) { }
-
-
-
+  constructor(private route: ActivatedRoute, private _formBuilder: FormBuilder, private dataService: DataService) { }
 
   ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.subscriberInfo = JSON.parse( sessionStorage.getItem("subscriber") ); 
 
-    this.dataService.isSubscribed().subscribe(data => {
-      if(data != null){
-        window.sessionStorage.setItem("subscriber", JSON.stringify(data));
-        this.router.navigate([`/editSubscriber`]);
-      } 
-    })
-
-    if(!this.tokenStorageService.getToken())
-        this.router.navigate([`/`]);
-
-        this.dataService.getOpertorList().subscribe(data => {
-           this.operatorList = data
-        });
-        this.dataService.getProfessionType().subscribe(data => {
-          this.professionTypeList = data
-       });
+     // window.sessionStorage.removeItem("subscriber");
+      this.name.setValue(this.subscriberInfo.name);
+      this.email.setValue(this.subscriberInfo.email);
+      this.phoneNumber.setValue(this.subscriberInfo.phoneNumber);
+      this.webSiteUrl.setValue(this.subscriberInfo.websiteUrl);
+      this.profession_type.setValue(this.subscriberInfo.professionType.type);
+      this.siren.setValue(this.subscriberInfo.legalInformation.siren);
+      this.siret.setValue(this.subscriberInfo.legalInformation.siret);
+      this.nic.setValue(this.subscriberInfo.legalInformation.nic);
+      this.ape.setValue(this.subscriberInfo.legalInformation.ape);
+      this.tva.setValue(this.subscriberInfo.legalInformation.tva);
+      this.description.setValue(this.subscriberInfo.legalInformation.description);
+      this.city.setValue(this.subscriberInfo.addressSet[0].city);
+      this.street.setValue(this.subscriberInfo.addressSet[0].street);
+      this.zipCode.setValue(this.subscriberInfo.addressSet[0].zipCode);
+      this.latitude.setValue(this.subscriberInfo.addressSet[0].latitude);
+      this.longitude.setValue(this.subscriberInfo.addressSet[0].longitude);
+      this.mondayOpening.setValue(this.subscriberInfo.openingTimeSet[0].opening);
+      this.mondayClosing.setValue(this.subscriberInfo.openingTimeSet[0].closing);
+      this.tuesdayClosing.setValue(this.subscriberInfo.openingTimeSet[1].opening);
+      this.tuesdayClosing.setValue(this.subscriberInfo.openingTimeSet[1].closing);
+      this.wednesdayOpening.setValue(this.subscriberInfo.openingTimeSet[2].opening);
+      this.wednesdayClosing.setValue(this.subscriberInfo.openingTimeSet[2].closing);
+      this.thursdayOpening.setValue(this.subscriberInfo.openingTimeSet[3].opening);
+      this.thursdayClosing.setValue(this.subscriberInfo.openingTimeSet[3].closing);
+      this.fridayOpening.setValue(this.subscriberInfo.openingTimeSet[4].opening);
+      this.fridayClosing.setValue(this.subscriberInfo.openingTimeSet[4].closing);
+      this.saturdayOpening.setValue(this.subscriberInfo.openingTimeSet[5].opening);
+      this.saturdayClosing.setValue(this.subscriberInfo.openingTimeSet[5].closing);
+      this.sundayOpening.setValue(this.subscriberInfo.openingTimeSet[6].opening);
+      this.sundayClosing.setValue(this.subscriberInfo.openingTimeSet[6].closing);
+    });
   }
 
-  saveSubscriber(){
-    var addressList = new Array();
+  editSubscriber(){
 
+    var addressList = new Array();
     this.subscriber = new Subscriber();
     this.address = new AddressModel();
     this.address.set_city(this.city.value);
@@ -143,12 +147,16 @@ export class BusinessManagmentComponent implements OnInit {
     this.subscriber.set_legalInformation(this.legalInformation);
     this.subscriber.email = this.email.value;
     this.subscriber.websiteUrl = this.webSiteUrl.value;
+    this.subscriber.id = this.subscriberInfo.id;
+    this.dataService.editProfessionalInformation(this.subscriber).subscribe(data =>{
+      alert("your information are successfully edited");
+      window.sessionStorage.setItem("subscriber", JSON.stringify(data));
 
-    this.dataService.saveProfessionalInformation(this.subscriber).subscribe(data =>{
-      alert("your information are successfully stored");
     });
 
   }
+
+
   saveOpeningDate() {
    
     this.openingTime = new OpeningTimeModel();
@@ -196,4 +204,17 @@ export class BusinessManagmentComponent implements OnInit {
     
   }
 
-}
+  deleteSubscriber(){
+
+    this.subscriberInfo = JSON.parse( sessionStorage.getItem("subscriber") ); 
+    this.dataService.deleteProfessionalInformation(this.subscriberInfo.id).subscribe(data =>{
+      alert("your information are successfully deleted");
+      window.sessionStorage.removeItem("subscriber");
+      
+
+    });
+  }
+
+  }
+
+

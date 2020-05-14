@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../service/data.service';
-import { Subscriber } from '../../interfaces/subscriber';
 import {FormControl, FormsModule, ReactiveFormsModule,FormGroup, FormBuilder} from '@angular/forms';
 import { Router } from '@angular/router';
 

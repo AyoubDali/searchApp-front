@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscriber } from '../../interfaces/subscriber';
 import { DataService } from '../service/data.service';
 import {ActivatedRoute} from '@angular/router';
+import { Subscriber } from '../model/Subscriber';
 
 @Component({
   selector: 'app-listing-result',
@@ -9,7 +9,7 @@ import {ActivatedRoute} from '@angular/router';
   styleUrls: ['./listing-result.component.css']
 })
 export class ListingResultComponent implements OnInit {
-  
+
   subscribers: Subscriber[];
   sub: any;
   searchKey: string;

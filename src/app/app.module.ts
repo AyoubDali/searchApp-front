@@ -19,6 +19,7 @@ import { BusinessManagmentComponent } from './business-managment/business-managm
 import {MatStepperModule, MatInputModule, MatButtonModule} from '@angular/material'
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { authInterceptorProviders } from './service/AuthInterceptor';
+import { EditSubscriberComponent } from './edit-subscriber/edit-subscriber.component';
 
 
 
@@ -32,7 +33,8 @@ import { authInterceptorProviders } from './service/AuthInterceptor';
     FooterComponent,
     SignUpComponent,
     SignInComponent,
-    BusinessManagmentComponent
+    BusinessManagmentComponent,
+    EditSubscriberComponent
   ],
   imports: [
     BrowserModule,
