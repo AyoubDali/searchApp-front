@@ -15,16 +15,16 @@ export class DataService {
 
 
 // for production  
-// subscriberServiceUrl = '/'; 
-// searchServiceUrl = '/';
+ subscriberServiceUrl = '/'; 
+ searchServiceUrl = '/';
  
  // for development
- //subscriberServiceUrl = 'http://localhost:8090/';
- //searchServiceUrl = '/';
+//subscriberServiceUrl = 'http://localhost:8090/';
+// searchServiceUrl = 'http://localhost:8070/';
 
  // for kubernetes
- subscriberServiceUrl = 'http://localhost:8090/';
- searchServiceUrl = 'http://searchservice:8070/';
+// subscriberServiceUrl = 'http://localhost:8090/';
+// searchServiceUrl = 'http://searchservice:8070/';
 
  
  constructor(private http: HttpClient,private router: Router
@@ -132,16 +132,21 @@ export class DataService {
     }
 
     saveProfessionalInformation(subscriber: Subscriber) {
-      
+
+    //  alert("user here");
+      console.log("user here");
+
       const httpOptions = {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
       const subscriberJson = JSON.stringify(subscriber);
       const user = this.tokenStorageService.getUser();
 
-      return this.http.post<any>(`${this.subscriberServiceUrl}api/subscriber/add`, {
-        subscriber,
-        user} ,httpOptions);
+      console.log("user here"+user);
+       return this.http.post<any>(`${this.subscriberServiceUrl}api/subscriber/add`, {
+       subscriber,
+      user} ,httpOptions);
+   
     }
 
     isSubscribed() {
@@ -149,7 +154,7 @@ export class DataService {
         headers: new HttpHeaders({ 'Content-Type': 'application/json' })
       };
       const user = this.tokenStorageService.getUser();
-
+      console.log("is subscribed"+ user);
       return this.http.get<Subscriber>(`${this.subscriberServiceUrl}api/user/isSubscribed/${user}`,
       httpOptions );
     }

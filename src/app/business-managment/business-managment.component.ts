@@ -88,7 +88,10 @@ export class BusinessManagmentComponent implements OnInit {
 
   ngOnInit() {
 
+    //alert("here");
     this.dataService.isSubscribed().subscribe(data => {
+      console.log("is subscribed returned value"+data);
+
       if(data != null){
         window.sessionStorage.setItem("subscriber", JSON.stringify(data));
         this.router.navigate([`/editSubscriber`]);
