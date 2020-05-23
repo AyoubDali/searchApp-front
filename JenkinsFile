@@ -2,16 +2,19 @@ pipeline{
     agent any
     environment{
         DOCKER_TAG = getDockerTag()
+        dockerImage = ''
     }
     stages{
         stage('Build docker image'){
           steps{
-              sh "docker build . -t ayoubdali/searchapp-front:${DOCKER_TAG} "
+//              sh "docker build . -t ayoubdali/searchapp-front:${DOCKER_TAG} "
+              dockerImage = docker.build("ayoubdali/searchapp-front:${DOCKER_TAG}")
+
           }  
         }
         stage('push docker image to docker hub'){
           steps{
-              sh "docker push ayoubdali/searchapp-front:${DOCKER_TAG} "
+              dockerImage.push()
           }  
         }
     }
