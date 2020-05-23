@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "ayoubdali/searchapp-front"
-    registryCredential = 'docker-hub-credentials'
+    registryCredential = 'dockerhub'
     dockerImage = ''
   }
   agent any
