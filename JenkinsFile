@@ -1,5 +1,7 @@
 pipeline{
     agent any
+    def dockerImage
+
     environment{
         DOCKER_TAG = getDockerTag()
     }
