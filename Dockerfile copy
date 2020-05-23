@@ -33,3 +33,8 @@ COPY --from=node /app/dist/searchService-front /usr/share/nginx/html
 
  FROM nginx:1.17.1-alpine
 COPY /dist/searchService-front /usr/share/nginx/html
+
+
+
+FROM nginx:1.17.1-alpine
+COPY /dist/searchService-front /usr/share/nginx/html
