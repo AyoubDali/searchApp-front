@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Build docker image'){
           steps{
-              sh "docker build -t ayoubdali/searchapp-front:${DOCKER_TAG} -f /home/xroot/IdeaProjects/internship Project/searchService-front/Dockerfile "
+              sh "docker build -t ayoubdali/searchapp-front:${DOCKER_TAG} -f /home/xroot/IdeaProjects/internship Project/searchService-front "
           }  
         }
     }
