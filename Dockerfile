@@ -1,13 +1,4 @@
 
-# base image
-FROM node:latest as node 
+FROM nginx:1.17.1-alpine
+COPY /home/xroot/IdeaProjects/internship_Project/searchService-front/dist/searchService-front /usr/share/nginx/html
 
-# set working directory
-WORKDIR /app
-
-COPY . .
-RUN npm install
-RUN npm run build --prod
-
-FROM nginx:alpine
-COPY --from=node /app/dist/searchService-front /usr/share/nginx/html
