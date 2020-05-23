@@ -4,7 +4,7 @@ node {
   def dockerImage
 
   stage('Build image') {
-    dockerImage = docker.build("ayoubdali/searchapp-front")
+    dockerImage = docker.build("ayoubdali/searchapp-front"+ ":$BUILD_NUMBER")
   }
 
   stage('Push image') {
